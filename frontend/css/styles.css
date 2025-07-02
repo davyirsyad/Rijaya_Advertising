@@ -1,0 +1,547 @@
+/* File: /css/styles.css (Versi Profesional Baru) */
+
+/* 1. Definisi Variabel Warna (Design System) & Font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
+
+:root {
+  --background-primary: rgb(18, 18, 18);
+  --background-component: rgb(30, 30, 30);
+  --accent-primary: rgb(229, 9, 20);
+  --accent-secondary: rgb(220, 53, 69);
+  --text-primary: rgb(245, 245, 245);
+  --text-secondary: rgb(170, 170, 170);
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 2. Gaya Dasar */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+  padding-top: 80px; /* Ruang untuk navbar */
+}
+section {
+  padding: 80px 0;
+}
+.section-title {
+  text-align: center;
+  font-weight: 800;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  position: relative;
+  text-transform: uppercase;
+}
+.section-title::after {
+  content: "";
+  width: 80px;
+  height: 4px;
+  background-color: var(--accent-primary);
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+/* 3. Navbar Modern dengan Efek Kaca */
+.navbar {
+  padding: 1rem 0;
+  transition: background 0.3s ease-in-out;
+  border-bottom: 1px solid transparent;
+}
+.navbar.scrolled {
+  background: rgba(18, 18, 18, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+}
+.navbar-brand {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+.navbar-brand img {
+  height: 40px;
+  margin-right: 10px;
+}
+.navbar-brand span {
+  color: var(--accent-primary);
+}
+.nav-link {
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text-primary);
+}
+
+/* 4. Hero Section */
+.hero-section {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 1)),
+    url(https://source.unsplash.com/1600x900/?abstract,dark) no-repeat center
+      center/cover;
+}
+.hero-content h1 {
+  font-size: 4rem;
+  font-weight: 800;
+}
+.hero-content .lead {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+}
+
+/* 5. PERBAIKAN KARTU PRODUK (KUNCI UTAMA) */
+.product-card {
+  background-color: var(--background-component);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%; /* Membuat semua kartu memiliki tinggi yang sama */
+  display: flex; /* Mengaktifkan flexbox */
+  flex-direction: column; /* Mengatur item di dalamnya secara vertikal */
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.product-card-img-container {
+  width: 100%;
+  aspect-ratio: 4 / 3; /* Memaksa semua gambar memiliki rasio yang sama */
+  overflow: hidden;
+  background-color: #000;
+}
+.product-card .card-img-top {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Gambar akan mengisi ruang tanpa penyok */
+  transition: transform 0.4s ease;
+}
+.product-card:hover .card-img-top {
+  transform: scale(1.1);
+}
+.product-card .card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Membuat body kartu fleksibel */
+}
+.product-card .card-title {
+  font-weight: 600;
+}
+.product-card .price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+}
+.product-card .btn {
+  margin-top: auto; /* Mendorong tombol ke bagian paling bawah kartu */
+}
+
+/* 6. Komponen Lainnya (Modal, Form, Tombol) */
+.btn-danger {
+  background-color: var(--accent-primary);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+}
+.btn-danger:hover {
+  background-color: var(--accent-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+}
+.form-control,
+.form-select {
+  background-color: var(--background-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
+}
+.modal-content {
+  background-color: var(--background-component);
+  border: 1px solid var(--border-color);
+}
+.modal-header,
+.modal-footer {
+  border-color: var(--border-color);
+}
+.btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* ... (Sisa style Anda untuk innovation, contact, footer, dll. bisa disesuaikan dengan variabel di atas) ... */
+/* 8. Halaman Admin yang Jelas dan Mudah Dibaca */
+.admin-dashboard .card-body {
+  padding: 2rem;
+}
+
+#total-products-stat,
+#total-orders-stat {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+}
+
+.table {
+  --bs-table-bg: transparent;
+  --bs-table-border-color: var(--border-color);
+  --bs-table-color: var(--text-primary);
+  --bs-table-hover-color: var(--text-primary);
+  --bs-table-hover-bg: var(--background-component-hover);
+}
+
+.table-responsive {
+  border: none;
+}
+
+/* 9. Perbaikan Spesifik Lainnya */
+.innovation-card,
+.contact-card {
+  background-color: var(--background-component);
+  padding: 2rem;
+  border-radius: 12px;
+  height: 100%;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+
+.innovation-card:hover,
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.innovation-card .bi {
+  font-size: 3rem;
+  color: var(--accent-primary);
+  margin-bottom: 1rem;
+}
+
+.contact-card .info-item {
+  display: flex;
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.contact-card .info-item .bi {
+  font-size: 2rem;
+  color: var(--accent-primary);
+  margin-right: 1.5rem;
+}
+
+.contact-card .social-links .social-link {
+  color: var(--text-secondary);
+  margin: 0 10px;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.contact-card .social-links .social-link:hover {
+  color: var(--accent-primary);
+}
+
+.footer {
+  background-color: var(--background-component);
+  padding: 2rem 0;
+  margin-top: 50px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* 10. PENYEMPURNAAN KARTU PRODUK (Tambahkan di akhir file) */
+
+.product-card {
+  box-shadow: none; /* Hilangkan shadow default agar fokus pada gambar */
+  overflow: hidden; /* Pastikan gambar tidak keluar dari sudut kartu */
+}
+
+.product-card-img-container {
+  width: 100%;
+  aspect-ratio: 4 / 3; /* PAKSA SEMUA GAMBAR MENJADI RASIO 4:3 */
+  overflow: hidden;
+  background-color: var(
+    --background-primary
+  ); /* Warna latar jika gambar gagal dimuat */
+}
+
+.product-card .card-img-top {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* INI KUNCINYA: gambar akan mengisi ruang tanpa penyok */
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover .card-img-top {
+  transform: scale(1.1); /* Efek zoom halus saat disentuh mouse */
+}
+
+.product-card .card-body {
+  background-color: var(--background-component);
+  text-align: center;
+}
+
+.product-card .card-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.product-card .price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  margin-bottom: 1rem;
+}
+
+.product-card .btn {
+  margin-top: auto; /* Mendorong tombol ke bagian bawah kartu */
+}
+
+/* ============================================= */
+/* STYLE BARU UNTUK FOOTER PROFESIONAL           */
+/* ============================================= */
+
+.footer {
+  background-color: var(
+    --background-component
+  ); /* Menggunakan warna komponen agar sedikit berbeda dari body */
+  padding: 60px 0 20px;
+  margin-top: 50px;
+  border-top: 2px solid var(--accent-primary); /* Garis tegas berwarna aksen */
+  font-size: 0.95rem;
+}
+
+.footer-logo {
+  height: 35px;
+  margin-right: 10px;
+}
+
+.footer-title {
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.footer-heading {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.footer-links li,
+.footer-contact li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent-primary);
+  padding-left: 5px; /* Efek geser saat hover */
+}
+
+.footer-contact .bi {
+  margin-right: 10px;
+  color: var(--accent-primary);
+}
+
+.social-links-footer .social-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.social-links-footer .social-link:hover {
+  background-color: var(--accent-primary);
+  color: var(--text-primary);
+  transform: translateY(-3px);
+}
+
+.copyright {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* File: css/styles.css (Tambahan untuk Hero Section Baru) */
+
+.hero-section {
+  min-height: 90vh; /* Sedikit lebih pendek agar pas */
+  background: linear-gradient(
+    160deg,
+    var(--background-component) 0%,
+    var(--background-primary) 100%
+  );
+}
+
+.hero-section .display-3 {
+  font-size: 3.5rem; /* Ukuran font yang lebih tegas */
+  font-weight: 800; /* Lebih tebal */
+}
+
+.hero-section .lead-professional {
+  font-size: 1.1rem; /* Ukuran font yang pas untuk dibaca */
+  color: var(--text-secondary); /* Warna abu-abu agar kontras dengan judul */
+  line-height: 1.8;
+  max-width: 700px; /* Batasi lebar agar tidak terlalu panjang */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-outline-light {
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+.btn-outline-light:hover {
+  background-color: var(--text-primary);
+  color: var(--background-primary);
+  border-color: var(--text-primary);
+}
+
+/* ============================================= */
+/* PERBAIKAN FINAL UNTUK TABEL ADMIN (v2)        */
+/* ============================================= */
+
+/* Selector lebih spesifik untuk memastikan override */
+.card-rog .table-responsive > .table {
+  background-color: var(
+    --background-component
+  ); /* Latar belakang utama tabel */
+  color: var(--text-primary); /* Warna teks default untuk seluruh tabel */
+  border-color: var(--border-color);
+  margin-bottom: 0;
+}
+
+.card-rog .table thead th {
+  background-color: rgba(0, 0, 0, 0.2); /* Latar belakang header sedikit beda */
+  color: var(
+    --text-secondary
+  ); /* Warna teks header abu-abu agar tidak terlalu mencolok */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.card-rog .table tbody tr {
+  background-color: transparent; /* Biarkan transparan agar warna tabel utama terlihat */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.card-rog .table tbody tr:hover {
+  background-color: var(
+    --background-component-hover
+  ); /* Efek hover pada baris */
+}
+
+.card-rog .table td {
+  padding: 1rem;
+  vertical-align: middle;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-primary); /* Pastikan warna teks sel juga putih */
+}
+
+.card-rog .table img {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ================================================== */
+/* SOLUSI FINAL v2 UNTUK TOMBOL AKSI ADMIN            */
+/* ================================================== */
+
+/* Target sel tabel terakhir di setiap baris pada tabel produk */
+#product-list-admin tr > td:last-child {
+  display: flex;
+  gap: 8px; /* Jarak antar tombol */
+  min-width: 190px;
+}
+
+#product-list-admin tr > td:last-child .btn {
+  flex: 1; /* Paksa semua tombol di dalamnya untuk memiliki lebar yang sama */
+}
+
+/* ============================================= */
+/* Menengahkan Judul Kolom 'Aksi'              */
+/* ============================================= */
+
+/* Target sel header terakhir di tabel produk dan pesanan */
+#product-list-admin thead th:last-child,
+#order-list-admin thead th:last-child {
+  text-align: center;
+}
+
+/* ================================================== */
+/* FINAL - Menyamakan Ukuran & Tinggi Tombol/Badge    */
+/* ================================================== */
+
+/* Menargetkan badge dan tombol detail di dalam tabel pesanan */
+#order-list-admin .badge,
+#order-list-admin .btn-detail {
+  width: 110px;
+  display: inline-block;
+  text-align: center;
+  font-weight: 600; /* Samakan ketebalan font */
+
+  /* PERBAIKAN UTAMA: Samakan padding dan font-size agar tinggi identik */
+  padding: 0.375rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5; /* Samakan line-height */
+}
+
+/* ============================================= */
+/* GAYA AKHIR UNTUK TAMPILAN ADMIN MODERN        */
+/* ============================================= */
+
+/* Membuat tabel di dalam kartu tidak memiliki border luar */
+.card-body .table-responsive {
+    border-radius: 0 0 12px 12px; /* Sesuaikan sudut dengan kartu */
+    overflow: hidden; /* Penting untuk efek sudut */
+}
+
+/* Menghapus border atas pada baris pertama tabel agar menyatu dengan header kartu */
+.card-body .table tbody tr:first-child td {
+    border-top: none;
+}
+
+/* Memberi gaya pada header tabel yang pertama agar sudutnya membulat */
+.card-body .table thead th:first-child {
+    border-top-left-radius: 12px;
+}
+
+/* Memberi gaya pada header tabel yang terakhir agar sudutnya membulat */
+.card-body .table thead th:last-child {
+    border-top-right-radius: 12px;
+}
