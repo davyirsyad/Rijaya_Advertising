@@ -1,82 +1,48 @@
-// File: backend/server.js (VERSI BARU YANG LEBIH TANGGUH)
+// File: backend/server.js (VERSI BARU YANG SUDAH DIPERBAIKI)
 
-import express from "express";
-import dotenv from "dotenv";
-import cors from "cors";
-import mongoose from "mongoose"; // Kita butuh mongoose di sini untuk koneksi
-import path from "path";
-
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import connectDB from './config/db.js'; // Kita akan menggunakan file koneksi terpisah
 
 // Import Rute
-import productRoutes from "./routes/productRoutes.js";
-import userRoutes from "./routes/userRoutes.js";
-import orderRoutes from "./routes/orderRoutes.js";
-import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+import productRoutes from './routes/productRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
+// Jalankan konfigurasi environment dan koneksi DB
 dotenv.config();
+connectDB(); // Panggil fungsi koneksi database
 
 const app = express();
 
-// Body parser middleware
+// Middleware untuk body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-// CORS Middleware
+// Middleware untuk CORS (Konfigurasi Anda sudah benar)
 app.use(cors({
-  // Ganti dengan URL Vercel frontend Anda jika sudah tahu,
-  // jika belum, kita akan perbarui ini nanti.
-  origin: ['http://127.0.0.1:5500', 'https://rijaya-advertising.vercel.app'],
+  origin: [
+    'http://127.0.0.1:5500', 
+    'https://rijaya-advertising.vercel.app'
+  ],
   credentials: true
 }));
 
-// Definisi Rute API
-app.use("/api/products", productRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/orders", orderRoutes);
+// Rute Utama untuk tes cepat
+app.get('/', (req, res) => {
+  res.send('API for Rijaya Advertising is running...');
+});
 
-// GUNAKAN ERROR HANDLER DI AKHIR
+// Definisi Rute API
+app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/orders', orderRoutes);
+
+// Middleware untuk penanganan error (Harus di bagian akhir)
 app.use(notFound);
 app.use(errorHandler);
-// ... (const PORT dan startServer)
 
-// Konfigurasi untuk Produksi & Pengembangan
-const __dirname = path.resolve();
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/frontend/build")));
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
-  );
-} else {
-  app.use(express.static(path.join(__dirname, "/frontend")));
-  app.get("/", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "frontend", "index.html"));
-  });
-}
-
-// const PORT = process.env.PORT || 5000;
-
-// --- FUNGSI UNTUK MEMULAI SERVER SECARA BERURUTAN ---
-const startServer = async () => {
-  try {
-    // 1. Tunggu hingga koneksi ke MongoDB berhasil
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("MongoDB Connected successfully!");
-
-    // 2. SETELAH database terhubung, BARU jalankan server Express
-    // app.listen(PORT, () => {
-    //   console.log(
-    //     `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
-    //   );
-    // });
-  } catch (error) {
-    console.error(`Error connecting to MongoDB: ${error.message}`);
-    process.exit(1); // Keluar dari proses jika koneksi gagal
-  }
-};
-
-// Panggil fungsi untuk memulai semuanya
-startServer();
-
-// Pastikan baris ini ada di paling akhir
+// Ekspor 'app' untuk Vercel
 export default app;

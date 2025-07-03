@@ -1,3 +1,5 @@
+// File: backend/config/db.js (PASTIKAN ISINYA SEPERTI INI)
+
 import mongoose from "mongoose";
 
 const connectDB = async () => {
