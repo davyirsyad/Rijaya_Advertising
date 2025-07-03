@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({
   // Ganti dengan URL Vercel frontend Anda jika sudah tahu,
   // jika belum, kita akan perbarui ini nanti.
-  origin: ['http://127.0.0.1:5500', 'https://web-rijaya-adv-2p2n.vercel.app'],
+  origin: ['http://127.0.0.1:5500', 'https://rijaya-advertising.vercel.app'],
   credentials: true
 }));
 
