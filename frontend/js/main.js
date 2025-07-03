@@ -1,7 +1,7 @@
 // File: /js/main.js (Final, Lengkap, dan Profesional)
 
 // Variabel global untuk alamat API, dideklarasikan hanya di sini.
-const API_BASE_URL = "https://rijaya-api.vercel.app";
+const API_BASE_URL = "https://rijaya-api-baru.vercel.app";
 
 /**
  * Fungsi untuk memuat komponen HTML dari file eksternal ke dalam selector.
