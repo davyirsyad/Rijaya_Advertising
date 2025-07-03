@@ -23,7 +23,12 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // CORS Middleware
-app.use(cors());
+app.use(cors({
+  // Ganti dengan URL Vercel frontend Anda jika sudah tahu,
+  // jika belum, kita akan perbarui ini nanti.
+  origin: ['http://127.0.0.1:5500', 'https://web-rijaya-adv-2p2n.vercel.app'],
+  credentials: true
+}));
 
 // Definisi Rute API
 app.use("/api/products", productRoutes);
@@ -49,7 +54,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
 
 // --- FUNGSI UNTUK MEMULAI SERVER SECARA BERURUTAN ---
 const startServer = async () => {
@@ -59,11 +64,11 @@ const startServer = async () => {
     console.log("MongoDB Connected successfully!");
 
     // 2. SETELAH database terhubung, BARU jalankan server Express
-    app.listen(PORT, () => {
-      console.log(
-        `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
-      );
-    });
+    // app.listen(PORT, () => {
+    //   console.log(
+    //     `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
+    //   );
+    // });
   } catch (error) {
     console.error(`Error connecting to MongoDB: ${error.message}`);
     process.exit(1); // Keluar dari proses jika koneksi gagal
@@ -72,3 +77,6 @@ const startServer = async () => {
 
 // Panggil fungsi untuk memulai semuanya
 startServer();
+
+// Pastikan baris ini ada di paling akhir
+export default app;
